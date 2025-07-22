@@ -8,27 +8,26 @@
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      background: #f9f9f9;
-      margin: 0;
+      background: #f4f6fb;
       padding: 0;
+      margin: 0;
     }
-    .form-container {
-      max-width: 600px;
-      margin: 60px auto;
+    .container {
+      max-width: 760px;
       background: #fff;
-      padding: 40px 30px;
+      margin: 40px auto;
+      padding: 40px;
       border-radius: 10px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.08);
     }
     h1 {
       text-align: center;
-      color: #222a35;
-      font-size: 1.8rem;
+      color: #1d1d1f;
       margin-bottom: 30px;
     }
     label {
       display: block;
-      margin-top: 18px;
+      margin-top: 20px;
       margin-bottom: 6px;
       font-weight: 600;
       color: #222;
@@ -41,70 +40,146 @@
       border-radius: 6px;
       box-sizing: border-box;
     }
-    input:focus, select:focus, textarea:focus {
-      outline: 2px solid #165dff;
+    textarea {
+      resize: vertical;
     }
     button {
       width: 100%;
+      margin-top: 30px;
       padding: 14px;
       background: #165dff;
-      color: #fff;
-      font-weight: 600;
-      font-size: 1rem;
       border: none;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
       border-radius: 6px;
-      margin-top: 25px;
       cursor: pointer;
     }
     button:hover {
-      background: #0e49d1;
+      background: #1148c5;
     }
-    @media (max-width: 650px) {
-      .form-container {
-        margin: 30px 16px;
-        padding: 24px;
-      }
+    canvas {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+      height: 150px;
+      margin-top: 10px;
+    }
+    .clear-btn {
+      margin-top: 10px;
+      background: #aaa;
     }
   </style>
 </head>
 <body>
-
-  <div class="form-container">
+  <div class="container">
     <h1>Business Funding Application</h1>
     <form action="https://formsubmit.co/Johnny.Q.Thai@gmail.com" method="POST">
-      <label for="fname">First Name *</label>
-      <input type="text" id="fname" name="First Name" required>
-
-      <label for="lname">Last Name *</label>
-      <input type="text" id="lname" name="Last Name" required>
-
-      <label for="business">Business Name *</label>
-      <input type="text" id="business" name="Business Name" required>
-
-      <label for="phone">Phone Number *</label>
-      <input type="tel" id="phone" name="Phone Number" required>
-
-      <label for="email">Email Address *</label>
-      <input type="email" id="email" name="Email" required>
-
-      <label for="revenue">Monthly Revenue *</label>
-      <input type="text" id="revenue" name="Monthly Revenue" required>
-
-      <label for="time">Time in Business *</label>
-      <select id="time" name="Time in Business" required>
-        <option value="" disabled selected>Select one</option>
+      
+      <!-- Basic Info -->
+      <label>First Name *</label><input type="text" name="First Name" required>
+      <label>Last Name *</label><input type="text" name="Last Name" required>
+      <label>Email *</label><input type="email" name="Email" required>
+      <label>Phone Number *</label><input type="text" name="Phone Number" required>
+      
+      <!-- Business Details -->
+      <label>Business Name *</label><input type="text" name="Business Name" required>
+      <label>Business Address *</label><input type="text" name="Business Address" required>
+      <label>Business Website</label><input type="url" name="Business Website">
+      <label>Federal Tax ID / EIN *</label><input type="text" name="EIN" required>
+      <label>Time in Business *</label>
+      <select name="Time in Business" required>
+        <option disabled selected>Select</option>
         <option>Less than 6 months</option>
         <option>6–12 months</option>
         <option>1–2 years</option>
         <option>2+ years</option>
       </select>
+      <label>Monthly Gross Revenue *</label><input type="text" name="Monthly Revenue" required>
+      <label>Industry Type *</label><input type="text" name="Industry" required>
+      <label>Use of Funds *</label><textarea name="Use of Funds" rows="3" required></textarea>
+      <label>Number of Employees</label><input type="number" name="Employees">
+      <label>Do you currently have funding?</label>
+      <select name="Existing Funding">
+        <option>No</option>
+        <option>Yes - 1 position</option>
+        <option>Yes - stacked (2+)</option>
+      </select>
+      <label>Are you current on rent/lease?</label>
+      <select name="Current on Lease">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
 
-      <label for="use">What will you use the funds for?</label>
-      <textarea id="use" name="Use of Funds" rows="3"></textarea>
+      <!-- Owner Info -->
+      <label>Owner's Date of Birth *</label><input type="date" name="DOB" required>
+      <label>Owner's % of Ownership *</label><input type="text" name="Ownership %" required>
+      <label>Estimated Credit Score *</label>
+      <select name="Credit Score" required>
+        <option disabled selected>Select</option>
+        <option>Below 500</option>
+        <option>500–599</option>
+        <option>600–649</option>
+        <option>650–699</option>
+        <option>700+</option>
+      </select>
 
-      <button type="submit">Apply Now</button>
+      <!-- Legal & Signature -->
+      <label>Any Liens or Bankruptcy? *</label>
+      <select name="Liens or Bankruptcy" required>
+        <option value="" disabled selected>Select one</option>
+        <option>No</option>
+        <option>Yes - Liens</option>
+        <option>Yes - Bankruptcy</option>
+        <option>Yes - Both</option>
+      </select>
+
+      <label>How Soon Do You Need Funding?</label>
+      <select name="Urgency">
+        <option>Immediately</option>
+        <option>Within 1 week</option>
+        <option>Within 30 days</option>
+        <option>Just exploring options</option>
+      </select>
+
+      <!-- Signature -->
+      <label>Signature (Draw using mouse or finger):</label>
+      <canvas id="sig-canvas"></canvas>
+      <button type="button" class="clear-btn" onclick="clearCanvas()">Clear Signature</button>
+
+      <!-- Fallback text input signature -->
+      <label>Full Name (to confirm signature) *</label><input type="text" name="Typed Signature" required>
+      <label>Date *</label><input type="date" name="Signed Date" required>
+
+      <button type="submit">Submit My Application</button>
     </form>
   </div>
 
+  <script>
+    const canvas = document.getElementById("sig-canvas");
+    const ctx = canvas.getContext("2d");
+    let drawing = false;
+
+    canvas.addEventListener("mousedown", () => drawing = true);
+    canvas.addEventListener("mouseup", () => drawing = false);
+    canvas.addEventListener("mouseout", () => drawing = false);
+    canvas.addEventListener("mousemove", draw);
+
+    function draw(e) {
+      if (!drawing) return;
+      ctx.lineWidth = 2;
+      ctx.lineCap = "round";
+      ctx.strokeStyle = "#000";
+      const rect = canvas.getBoundingClientRect();
+      ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    }
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  </script>
 </body>
 </html>
