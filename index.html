@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Business Funding Application</title>
+  <title>Urgent Lending - Business Funding Application</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -23,11 +23,17 @@
     h1 {
       text-align: center;
       color: #1d1d1f;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+    h2 {
+      color: #165dff;
+      margin-top: 30px;
+      font-size: 1.3rem;
     }
     label {
       display: block;
-      margin-top: 20px;
+      margin-top: 15px;
       margin-bottom: 6px;
       font-weight: 600;
       color: #222;
@@ -58,101 +64,32 @@
     button:hover {
       background: #1148c5;
     }
-    canvas {
+    .signature-container {
       border: 1px solid #ccc;
       border-radius: 6px;
       width: 100%;
       height: 150px;
       margin-top: 10px;
+      touch-action: none;
+      display: block;
     }
     .clear-btn {
       margin-top: 10px;
       background: #aaa;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Business Funding Application</h1>
-    <form action="https://formsubmit.co/Johnny.Q.Thai@gmail.com" method="POST">
-      
-      <!-- Basic Info -->
-      <label>First Name *</label><input type="text" name="First Name" required>
-      <label>Last Name *</label><input type="text" name="Last Name" required>
-      <label>Email *</label><input type="email" name="Email" required>
-      <label>Phone Number *</label><input type="text" name="Phone Number" required>
-      
-      <!-- Business Details -->
-      <label>Business Name *</label><input type="text" name="Business Name" required>
-      <label>Business Address *</label><input type="text" name="Business Address" required>
-      <label>Business Website</label><input type="url" name="Business Website">
-      <label>Federal Tax ID / EIN *</label><input type="text" name="EIN" required>
-      <label>Time in Business *</label>
-      <select name="Time in Business" required>
-        <option disabled selected>Select</option>
-        <option>Less than 6 months</option>
-        <option>6–12 months</option>
-        <option>1–2 years</option>
-        <option>2+ years</option>
-      </select>
-      <label>Monthly Gross Revenue *</label><input type="text" name="Monthly Revenue" required>
-      <label>Industry Type *</label><input type="text" name="Industry" required>
-      <label>Use of Funds *</label><textarea name="Use of Funds" rows="3" required></textarea>
-      <label>Number of Employees</label><input type="number" name="Employees">
-      <label>Do you currently have funding?</label>
-      <select name="Existing Funding">
-        <option>No</option>
-        <option>Yes - 1 position</option>
-        <option>Yes - stacked (2+)</option>
-      </select>
-      <label>Are you current on rent/lease?</label>
-      <select name="Current on Lease">
-        <option>Yes</option>
-        <option>No</option>
-      </select>
-
-      <!-- Owner Info -->
-      <label>Owner's Date of Birth *</label><input type="date" name="DOB" required>
-      <label>Owner's % of Ownership *</label><input type="text" name="Ownership %" required>
-      <label>Estimated Credit Score *</label>
-      <select name="Credit Score" required>
-        <option disabled selected>Select</option>
-        <option>Below 500</option>
-        <option>500–599</option>
-        <option>600–649</option>
-        <option>650–699</option>
-        <option>700+</option>
-      </select>
-
-      <!-- Legal & Signature -->
-      <label>Any Liens or Bankruptcy? *</label>
-      <select name="Liens or Bankruptcy" required>
-        <option value="" disabled selected>Select one</option>
-        <option>No</option>
-        <option>Yes - Liens</option>
-        <option>Yes - Bankruptcy</option>
-        <option>Yes - Both</option>
-      </select>
-
-      <label>How Soon Do You Need Funding?</label>
-      <select name="Urgency">
-        <option>Immediately</option>
-        <option>Within 1 week</option>
-        <option>Within 30 days</option>
-        <option>Just exploring options</option>
-      </select>
-
-      <!-- Signature -->
-      <label>Signature (Draw using mouse or finger):</label>
-      <canvas id="sig-canvas"></canvas>
-      <button type="button" class="clear-btn" onclick="clearCanvas()">Clear Signature</button>
-
-      <!-- Fallback text input signature -->
-      <label>Full Name (to confirm signature) *</label><input type="text" name="Typed Signature" required>
-      <label>Date *</label><input type="date" name="Signed Date" required>
-
-      <button type="submit">Submit My Application</button>
-    </form>
+    <h1>Urgent Lending</h1>
+    <canvas id="sig-canvas" class="signature-container"></canvas>
+    <button type="button" class="clear-btn" onclick="clearCanvas()">Clear Signature</button>
   </div>
 
   <script>
@@ -160,22 +97,70 @@
     const ctx = canvas.getContext("2d");
     let drawing = false;
 
-    canvas.addEventListener("mousedown", () => drawing = true);
-    canvas.addEventListener("mouseup", () => drawing = false);
-    canvas.addEventListener("mouseout", () => drawing = false);
-    canvas.addEventListener("mousemove", draw);
+    function resizeCanvas() {
+      const ratio = Math.max(window.devicePixelRatio || 1, 1);
+      canvas.width = canvas.offsetWidth * ratio;
+      canvas.height = canvas.offsetHeight * ratio;
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    }
 
-    function draw(e) {
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    function getCanvasPos(e) {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: (e.clientX || e.touches[0].clientX) - rect.left,
+        y: (e.clientY || e.touches[0].clientY) - rect.top
+      };
+    }
+
+    canvas.addEventListener("mousedown", e => {
+      drawing = true;
+      const { x, y } = getCanvasPos(e);
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+    });
+
+    canvas.addEventListener("mouseup", () => {
+      drawing = false;
+    });
+
+    canvas.addEventListener("mousemove", e => {
       if (!drawing) return;
+      const { x, y } = getCanvasPos(e);
       ctx.lineWidth = 2;
       ctx.lineCap = "round";
       ctx.strokeStyle = "#000";
-      const rect = canvas.getBoundingClientRect();
-      ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+      ctx.lineTo(x, y);
       ctx.stroke();
       ctx.beginPath();
-      ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-    }
+      ctx.moveTo(x, y);
+    });
+
+    canvas.addEventListener("touchstart", e => {
+      drawing = true;
+      const { x, y } = getCanvasPos(e);
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+    });
+
+    canvas.addEventListener("touchend", () => {
+      drawing = false;
+    });
+
+    canvas.addEventListener("touchmove", e => {
+      e.preventDefault();
+      if (!drawing) return;
+      const { x, y } = getCanvasPos(e);
+      ctx.lineWidth = 2;
+      ctx.lineCap = "round";
+      ctx.strokeStyle = "#000";
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+    }, { passive: false });
 
     function clearCanvas() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
