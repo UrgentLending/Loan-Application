@@ -88,11 +88,37 @@
 <body>
   <div class="container">
     <h1>Urgent Lending</h1>
+    <form action="https://formsubmit.co/Johnny.Q.Thai@gmail.com" method="POST">
+      <h2>Business Information</h2>
+      <label>Legal Business Name *</label><input type="text" name="Business Name" required>
+      <label>Business Address *</label><input type="text" name="Business Address" required>
+      <label>City *</label><input type="text" name="City" required>
+      <label>State *</label><input type="text" name="State" required>
+      <label>ZIP Code *</label><input type="text" name="ZIP" required>
+      <label>Business Phone *</label><input type="text" name="Business Phone" required>
+      <label>Monthly Revenue *</label><input type="text" name="Monthly Revenue" required>
+      <label>Time in Business *</label><input type="text" name="Time in Business" required>
+      <label>Industry *</label><input type="text" name="Industry" required>
+      <label>Use of Funds *</label><textarea name="Use of Funds" rows="3" required></textarea>
 
-    <!-- Signature Canvas -->
-    <label for="sig-canvas">Signature (Draw here):</label>
-    <canvas id="sig-canvas" class="signature-container"></canvas>
-    <button type="button" class="clear-btn" onclick="clearCanvas()">Clear Signature</button>
+      <h2>Owner Information</h2>
+      <label>First Name *</label><input type="text" name="First Name" required>
+      <label>Last Name *</label><input type="text" name="Last Name" required>
+      <label>Phone Number *</label><input type="text" name="Phone Number" required>
+      <label>Email Address *</label><input type="email" name="Email" required>
+      <label>Date of Birth *</label><input type="date" name="DOB" required>
+      <label>Ownership % *</label><input type="text" name="Ownership %" required>
+
+      <h2>Signature</h2>
+      <label for="sig-canvas">Draw Your Signature</label>
+      <canvas id="sig-canvas" class="signature-container"></canvas>
+      <button type="button" class="clear-btn" onclick="clearCanvas()">Clear Signature</button>
+
+      <label>Full Name *</label><input type="text" name="Typed Signature" required>
+      <label>Date *</label><input type="date" name="Signed Date" required>
+
+      <button type="submit">Submit Application</button>
+    </form>
   </div>
 
   <script>
