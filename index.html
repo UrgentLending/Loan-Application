@@ -3,48 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Simple Website</title>
+    <title>Urgent Lending - Business Funding Application</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header -->
     <header>
-        <h1>Welcome to My Website</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <h1>Urgent Lending</h1>
+        <p>Business Funding Application</p>
     </header>
 
     <!-- Main Content -->
     <main>
-        <section id="home">
-            <h2>Home</h2>
-            <p>Welcome to my website! This is a simple example to get you started.</p>
-        </section>
-        <section id="about">
-            <h2>About</h2>
-            <p>This is a sample website built with HTML and CSS. Customize it to fit your needs!</p>
-        </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>Email: example@email.com</p>
-            <form>
-                <label for="name">Name:</label><br>
-                <input type="text" id="name" name="name" required><br>
-                <label for="message">Message:</label><br>
-                <textarea id="message" name="message" required></textarea><br>
-                <button type="submit">Send</button>
-            </form>
-        </section>
+        <form id="application-form">
+            <!-- Business Information -->
+            <section class="form-section">
+                <h2>Business Information</h2>
+                <div class="form-group">
+                    <label for="business-name">Business Legal Name *</label>
+                    <input type="text" id="business-name" name="business-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="business-dba">DBA (Doing Business As)</label>
+                    <input type="text" id="business-dba" name="business-dba">
+                </div>
+                <div class="form-group">
+                    <label for="business-address">Business Address *</label>
+                    <input type="text" id="business-address" name="business-address" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="business-city">City *</label>
+                        <input type="text" id="business-city" name="business-city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="business-state">State *</label>
+                        <select id="business-state" name="business-state" required>
+                            <option value="">Select State</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <!-- Add all US states as needed -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="business-zip">Zip Code *</label>
+                        <input type="text" id="business-zip" name="business-zip" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="business-phone">Business Phone Number *</label>
+                    <input type="tel" id="business-phone" name="business-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="business-email">Business Email *</label>
+                    <input type="email" id="business-email" name="business-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="business-type">Business Type *</label>
+                    <select id="business-type" name="business-type" required>
+                        <option value="">Select Type</option>
+                        <option value="corporation">Corporation</option>
+                        <option value="llc">LLC</option>
+                        <option value="partnership">Partnership</option>
+                        <option value="sole-proprietorship">Sole Proprietorship</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="business-start">Business Start Date *</label>
+                    <input type="date" id="business-start" name="business-start" required>
+                </div>
+            </section>
+
+            <!-- Owner Information -->
+            <section class="form-section">
+                <h2>Owner Information</h2>
+                <div class="form-group">
+                    <label for="owner-name">Owner Full Name *</label>
+                    <input type="text" id="owner-name" name="owner-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="owner-title">Title *</label>
+                    <input type="text" id="owner-title" name="owner-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="owner-ssn">Social Security Number *</label>
+                    <input type="text" id="owner-ssn" name="owner-ssn" required>
+                </div>
+                <div class="form-group">
+                    <label for="owner-dob">Date of Birth *</label>
+                    <input type="date" id="owner-dob" name="owner-dob" required>
+                </div>
+                <div class="form-group">
+                    <label for="owner-address">Home Address *</label>
+                    <input type="text" id="owner-address" name="owner-address" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="owner-city">City *</label>
+                        <input type="text" id="owner-city" name="owner-city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="owner-state">State *</label>
+                        <select id="owner-state" name="owner-state" required>
+                            <option value="">Select State</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <!-- Add all US states as needed -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="owner-zip">Zip Code *</label>
+                        <input type="text" id="owner-zip" name="owner-zip" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="owner-phone">Phone Number *</label>
+                    <input type="tel" id="owner-phone" name="owner-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="owner-email">Email Address *</label>
+                    <input type="email" id="owner-email" name="owner-email" required>
+                </div>
+            </section>
+
+            <!-- Additional Information -->
+            <section class="form-section">
+                <h2>Additional Information</h2>
+                <div class="form-group">
+                    <label for="funding-amount">Requested Funding Amount *</label>
+                    <input type="number" id="funding-amount" name="funding-amount" required>
+                </div>
+                <div class="form-group">
+                    <label for="business-revenue">Annual Business Revenue *</label>
+                    <input type="number" id="business-revenue" name="business-revenue" required>
+                </div>
+                <div class="form-group">
+                    <label for="business-purpose">Purpose of Funding *</label>
+                    <textarea id="business-purpose" name="business-purpose" required></textarea>
+                </div>
+            </section>
+
+            <!-- Signature Section -->
+            <section class="form-section">
+                <h2>Signature</h2>
+                <div class="form-group">
+                    <label for="signature">Handwritten Signature *</label>
+                    <canvas id="signature" width="400" height="150"></canvas>
+                    <button type="button" id="clear-signature">Clear Signature</button>
+                </div>
+            </section>
+
+            <!-- Consent Section -->
+            <section class="form-section consent-section">
+                <h2>Consent</h2>
+                <p>By checking this box, I consent to receive text messages, phone calls, and emails related to my applications, inquiries, products, and other information from Urgent Lending. You can reply STOP at any time to opt out. Message and data rates may apply. Message frequency may vary. For assistance, reply HELP or text HELP to +1-800-555-1234. For more information, please refer to our <a href="/privacy-policy">Privacy Policy</a> and <a href="/terms">Terms of Use</a>.</p>
+                <div class="form-group">
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <label for="consent">I agree to the terms and conditions above *</label>
+                </div>
+            </section>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit">Submit Application</button>
+            </div>
+        </form>
     </main>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 My Website. All rights reserved.</p>
+        <p>© 2025 Urgent Lending. All rights reserved.</p>
+        <p><a href="/privacy-policy">Privacy Policy</a> | <a href="/terms">Terms of Use</a> | <a href="/contact">Contact Us</a></p>
     </footer>
+
+    <!-- JavaScript for Signature -->
+    <script>
+        const canvas = document.getElementById('signature');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+
+        canvas.addEventListener('touchstart', startDrawing);
+        canvas.addEventListener('touchmove', draw);
+        canvas.addEventListener('touchend', stopDrawing);
+
+        function startDrawing(e) {
+            isDrawing = true;
+            draw(e);
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#000';
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+            ctx.beginPath();
+        }
+
+        document.getElementById('clear-signature').addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        document.getElementById('application-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!canvas.toDataURL().includes('image/png')) {
+                alert('Please provide a signature.');
+                return;
+            }
+            alert('Form submitted! (This is a demo; no data is sent.)');
+        });
+    </script>
 </body>
 </html>
